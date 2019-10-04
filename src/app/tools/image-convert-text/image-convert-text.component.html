@@ -1,5 +1,5 @@
-<div class="qy_photo g-flex-h">
+<div class="qy_photo g-flex-h" #photo>
   <div class="qy_file">
-    <input type="file" accept="image/*">
+    <input type="file" accept="image/*" multiple (change)="fileChange($event)">
   </div>
 </div>
