@@ -4,15 +4,16 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html-pipe';
 
 
 
+
 @NgModule({
   declarations: [
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
   ]
 })
 export class SharedModule { }

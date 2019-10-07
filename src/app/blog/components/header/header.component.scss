@@ -1,0 +1,28 @@
+.header {
+  height: 240px;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  .site-brand {
+    background-color: #f973a3;
+
+    .custom-logo {
+      font-size: 40px;
+      color: #ffffff;
+    }
+    .custom-title {
+      margin-top: 10px;
+      color: #dddddd;
+    }
+  }
+
+  .site-nav {
+    padding: 20px 0;
+
+    .menu {
+      .menu-item {
+        padding: 5px 20px;
+        color: #555555;
+      }
+    }
+  }
+}

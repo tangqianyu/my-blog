@@ -9,7 +9,7 @@ export class ImageConvertTextComponent implements OnInit {
 
   @ViewChild('photo', { static: false })
   photo: ElementRef
-
+  images: Array<string>
 
 
   constructor(
@@ -27,8 +27,10 @@ export class ImageConvertTextComponent implements OnInit {
     for (let item of files) {
       let addDiv = this.render2.createElement('div')
       let addImg = this.render2.createElement('img')
+      let tempSrc = window.URL.createObjectURL(item) //图片的临时路径
+      this.images.push(tempSrc)
       this.render2.addClass(addImg, 'qy_addImg')
-      this.render2.setAttribute(addImg, 'src', window.URL.createObjectURL(item))
+      this.render2.setAttribute(addImg, 'src', tempSrc)
       this.render2.appendChild(addDiv, addImg)
       this.render2.appendChild(this.photo.nativeElement, addDiv)
     }
