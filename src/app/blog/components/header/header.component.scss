@@ -1,13 +1,17 @@
 .header {
-  height: 240px;
+  width: 240px;
   background-color: rgba(255, 255, 255, 0.75);
 
   .site-brand {
     background-color: #f973a3;
+    height: 110px;
 
     .custom-logo {
-      font-size: 40px;
       color: #ffffff;
+      width: 100%;
+      img {
+        width: 100%;
+      }
     }
     .custom-title {
       margin-top: 10px;
@@ -22,6 +26,19 @@
       .menu-item {
         padding: 5px 20px;
         color: #555555;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #ffffff;
+        }
+
+        i {
+          margin-right: 5px;
+        }
+      }
+
+      .active {
+        background-color: #ffffff;
       }
     }
   }

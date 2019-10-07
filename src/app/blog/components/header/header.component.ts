@@ -7,6 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  icons = [
+    {
+      icon: 'icon-home',
+      text: '首页',
+      link: '/blog/home'
+    },
+
+    {
+      icon: 'icon-about',
+      text: '关于',
+      link: '/blog/about'
+    },
+
+    {
+      icon: 'icon-category',
+      text: '分类',
+      link: '/blog/category'
+    },
+
+    {
+      icon: 'icon-reward',
+      text: '打赏',
+      link: '/blog/reward'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {
