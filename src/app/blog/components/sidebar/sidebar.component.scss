@@ -1,0 +1,70 @@
+.sidebar {
+  margin-top: 15px;
+  width: 240px;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  .user-info {
+    padding-top: 20px;
+    padding-bottom: 0;
+    width: 100%;
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1px solid #eee;
+
+    }
+
+    .nickname {
+      margin-top: 5px;
+      text-align: center;
+      color: #222;
+      font-weight: 600;
+    }
+
+    .site-state {
+      margin-top: 30px;
+      width: 120px;
+
+      .site-state-item {
+        width: 60px;
+        height: 50px;
+        border-left: 1px solid #fff;
+
+        &:nth-of-type(1) {
+          border-left: none;
+        }
+
+        span:nth-of-type(1) {
+          font-size: 16px;
+          color: #555555;
+
+          &:hover {
+            color: #262a30;
+          }
+        }
+
+        span:nth-of-type(2) {
+          font-size: 13px;
+          color: #999999;
+        }
+      }
+    }
+
+    .back-to-top {
+      background: #f5f5f5;
+      margin-top: 20px;
+      justify-content: center;
+      height: 24px;
+      color: #555555;
+      width: 100%;
+
+      &:hover {
+        color: #262a30;
+        background-color: #fff;
+      }
+    }
+
+  }
+}

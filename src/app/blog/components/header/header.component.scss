@@ -9,10 +9,12 @@
     .custom-logo {
       color: #ffffff;
       width: 100%;
+
       img {
         width: 100%;
       }
     }
+
     .custom-title {
       margin-top: 10px;
       color: #dddddd;
@@ -29,6 +31,7 @@
         cursor: pointer;
 
         &:hover {
+          color: #262a30;
           background-color: #ffffff;
         }
 

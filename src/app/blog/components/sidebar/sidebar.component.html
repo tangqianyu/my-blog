@@ -1,21 +1,27 @@
-<div class="sidebar">
+<div class="sidebar" #sidebar>
 
-  <div class="user-info">
+  <div class="user-info g-flex-center">
 
     <div class="avatar">
       <img src="" alt="">
     </div>
 
-    <div class="nickname">
-      Tony Tang
-    </div>
+    <div class="nickname">浪鱼啊</div>
 
-    <ul class="site-state">
-      <li class="site-state-item">
+    <ul class="site-state g-flex-h-center">
+      <li class="site-state-item g-flex-v-center-b">
         <span>156</span>
         <span>日志</span>
       </li>
+      <li class="site-state-item g-flex-v-center-b">
+        <span>36</span>
+        <span>分类</span>
+      </li>
     </ul>
-    
+
+    <div class="back-to-top g-flex-h-center" (click)="toTop()">
+      <i class="iconfont icon-upArrow"></i>
+      <span>{{heightRate}}%</span>
+    </div>
   </div>
 </div>

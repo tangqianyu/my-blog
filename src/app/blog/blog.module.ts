@@ -4,34 +4,60 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { PostListComponent } from './post/post-list/post-list.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AboutComponent } from './about/about.component';
+import { CategoryComponent } from './category/category.component';
+import { RewardComponent } from './reward/reward.component';
 import { BlogComponent } from './blog.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
-    data: {
-      title: '首页'
-    }
-  },
-
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: BlogComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        data: {
+          title: '首页'
+        }
+      },
+
+      {
+        path: 'tools',
+        loadChildren: () => import('./tools/tools.module').then(m => m.ToolsModule)
+      },
+
+      {
+        path: 'post',
+        loadChildren: () => import('./post/post.module').then(m => m.PostModule)
+      },
+
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+
+      {
+        path: 'category',
+        component: CategoryComponent
+      },
+
+      {
+        path: 'reward',
+        component: RewardComponent
+      }
+    ]
   },
 
-  {
-    path: 'tools',
-    loadChildren: () => import('./tools/tools.module').then(m => m.ToolsModule)
-  },
 
-  {
-    path: 'post-detail',
-    component: PostDetailComponent
-  }
+
+
+
+
 
 ]
 
@@ -39,14 +65,20 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    SharedModule
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
-    HomeComponent,
-    PostDetailComponent,
+    SidebarComponent,
     PostListComponent,
-   
+
+    HomeComponent,
+    AboutComponent,
+    CategoryComponent,
+    RewardComponent,
+    BlogComponent,
+
   ]
 })
 export class BlogModule { }

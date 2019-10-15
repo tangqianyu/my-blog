@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef, RendererFactory2 } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'image-convert-text',
@@ -13,12 +15,18 @@ export class ImageConvertTextComponent implements OnInit {
 
 
   constructor(
-    private render2: Renderer2
+    private render2: Renderer2,
+    private http: HttpClient
   ) {
 
   }
 
   ngOnInit() {
+    this.http.post('http://192.168.101.106:3000/tools/imgToText',{
+      test:'123'
+    }).subscribe(res => {
+      console.log(res);
+    })
   }
 
   fileChange(e) {

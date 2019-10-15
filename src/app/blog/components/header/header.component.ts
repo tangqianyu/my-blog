@@ -27,6 +27,12 @@ export class HeaderComponent implements OnInit {
     },
 
     {
+      icon: 'icon-file',
+      text: '归档',
+      link: '/blog/post'
+    },
+
+    {
       icon: 'icon-reward',
       text: '打赏',
       link: '/blog/reward'

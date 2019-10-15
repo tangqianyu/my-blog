@@ -1,6 +1,16 @@
-.root{
-    background: url('../../assets/images/bg.jpg') no-repeat center;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100%;
+.root {
+  background: url('../../assets/images/bg.jpg') no-repeat center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100%;
+
+  .main {
+    width: 1200px;
+    margin: 0 auto;
+
+    .sub-content {
+        flex: 1;
+        margin-right: 20px;
+    }
+  }
 }
