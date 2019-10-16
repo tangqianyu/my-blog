@@ -30,7 +30,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       throttle(event => interval(50))
     ).subscribe(event => {
       this.calHeightRate()
+      this.handerSiderbar()
     })
+   
   }
 
   calHeightRate(): void {
@@ -46,11 +48,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handerSiderbar(): void {
     let scrollTop = qyBrowserUtils.getScrollTop()
+    
     if (scrollTop >= this.height) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
       this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')
-      this.render2.setStyle(this.sidebar.nativeElement, 'top', '0')
-      this.render2.setStyle(this.sidebar.nativeElement, 'left', '0')
+      this.render2.setStyle(this.sidebar.nativeElement, 'top', '-20px')
     } else {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'static')
     }
