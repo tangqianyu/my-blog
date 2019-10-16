@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { BrowserUtils } from 'src/app/utils/browser.util';
-import { fromEvent, interval } from 'rxjs';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
+import { qyBrowserUtils } from 'src/app/utils/qy-browser.util';
+import { fromEvent, interval, Subscription } from 'rxjs';
 import { debounceTime, throttle } from 'rxjs/operators';
 
 @Component({
@@ -8,39 +8,57 @@ import { debounceTime, throttle } from 'rxjs/operators';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit, AfterViewInit {
-  @ViewChild('sidebar', { static: false }) 
-  sidebar:ElementRef
+export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('sidebar', { static: false })
+  sidebar: ElementRef
 
   heightRate: number = 0
+  subscribeScoll: Subscription | null
+  height: number = 0
+  constructor(
+    private render2: Renderer2
+  ) { }
 
-  constructor() { }
+  ngOnInit(): void {
 
-  ngOnInit() {
-    fromEvent(window, 'scroll').pipe(
+  }
+
+  ngAfterViewInit(): void {
+    this.height = qyBrowserUtils.getElementToPageTop(this.sidebar.nativeElement)
+    this.subscribeScoll = fromEvent(window, 'scroll').pipe(
       debounceTime(50),
-      throttle(ev => interval(50))
-    ).subscribe(res => {
+      throttle(event => interval(50))
+    ).subscribe(event => {
       this.calHeightRate()
     })
   }
 
-  ngAfterViewInit(): void {
-
-  }
-
-  calHeightRate() {
-    let validHeight = BrowserUtils.getScrollHeight() - BrowserUtils.getClientHeight()
+  calHeightRate(): void {
+    /* 有效距离 */
+    let validHeight = qyBrowserUtils.getScrollHeight() - qyBrowserUtils.getClientHeight()
     /* 百分比 */
-    this.heightRate = Math.ceil(BrowserUtils.getScrollTop() / validHeight * 100)
+    this.heightRate = Math.ceil(qyBrowserUtils.getScrollTop() / validHeight * 100)
   }
 
-  toTop() {
+  toTop(): void {
     window.scrollTo({ top: 0 })
   }
 
-  handerSiderbar() {
-    
+  handerSiderbar(): void {
+    let scrollTop = qyBrowserUtils.getScrollTop()
+    if (scrollTop >= this.height) {
+      this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
+      this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')
+      this.render2.setStyle(this.sidebar.nativeElement, 'top', '0')
+      this.render2.setStyle(this.sidebar.nativeElement, 'left', '0')
+    } else {
+      this.render2.setStyle(this.sidebar.nativeElement, 'position', 'static')
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscribeScoll.unsubscribe()
   }
 
 }
