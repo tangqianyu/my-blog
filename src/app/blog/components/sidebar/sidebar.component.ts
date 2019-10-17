@@ -13,8 +13,10 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   sidebar: ElementRef
 
   heightRate: number = 0
-  subscribeScoll: Subscription | null
-  height: number = 0
+  subscribeScoll: Subscription
+  toTopheight: number = 0 //距离顶部的高度
+  elementHeight: number = 0 //元素的高度
+
   constructor(
     private render2: Renderer2
   ) { }
@@ -24,22 +26,22 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.height = qyBrowserUtils.getElementToPageTop(this.sidebar.nativeElement)
+    this.toTopheight = qyBrowserUtils.getElementToPageTop(this.sidebar.nativeElement)
+    this.elementHeight = this.sidebar.nativeElement.offsetHeight
     this.subscribeScoll = fromEvent(window, 'scroll').pipe(
-      debounceTime(50),
-      throttle(event => interval(50))
+      debounceTime(50)
     ).subscribe(event => {
       this.calHeightRate()
       this.handerSiderbar()
     })
-   
+
   }
 
   calHeightRate(): void {
     /* 有效距离 */
     let validHeight = qyBrowserUtils.getScrollHeight() - qyBrowserUtils.getClientHeight()
     /* 百分比 */
-    this.heightRate = Math.ceil(qyBrowserUtils.getScrollTop() / validHeight * 100)
+    this.heightRate = Math.floor(qyBrowserUtils.getScrollTop() / validHeight * 100)
   }
 
   toTop(): void {
@@ -48,11 +50,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handerSiderbar(): void {
     let scrollTop = qyBrowserUtils.getScrollTop()
-    
-    if (scrollTop >= this.height) {
+
+    if (scrollTop >= (this.toTopheight - this.elementHeight-20)) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
       this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')
-      this.render2.setStyle(this.sidebar.nativeElement, 'top', '-20px')
+      this.render2.setStyle(this.sidebar.nativeElement, 'top', '0')
     } else {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'static')
     }
