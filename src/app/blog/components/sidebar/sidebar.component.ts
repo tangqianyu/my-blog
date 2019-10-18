@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, Ren
 import { qyBrowserUtils } from 'src/app/utils/qy-browser.util';
 import { fromEvent, interval, Subscription } from 'rxjs';
 import { debounceTime, throttle } from 'rxjs/operators';
+import { multiply } from 'src/app/utils/qy-calculate.util';
 
 @Component({
   selector: 'qy-sidebar',
@@ -32,14 +33,14 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.calHeightRate()
       this.handerSiderbar()
     })
-   
+
   }
 
   calHeightRate(): void {
     /* 有效距离 */
     let validHeight = qyBrowserUtils.getScrollHeight() - qyBrowserUtils.getClientHeight()
     /* 百分比 */
-    this.heightRate = Math.ceil(qyBrowserUtils.getScrollTop() / validHeight * 100)
+    this.heightRate = Math.floor(multiply(qyBrowserUtils.getScrollTop(), validHeight) * 100)
   }
 
   toTop(): void {
@@ -48,7 +49,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handerSiderbar(): void {
     let scrollTop = qyBrowserUtils.getScrollTop()
-    
+
     if (scrollTop >= this.height) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
       this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')
