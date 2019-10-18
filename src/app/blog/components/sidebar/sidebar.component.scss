@@ -14,6 +14,21 @@
       border-radius: 50%;
       border: 1px solid #eee;
 
+
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        animation: play 2s ease-out 1s 1;
+        transition: all 0.5s ease-in;
+
+        &:hover {
+          transition: all 0.5s ease-in;
+          transform: rotate(-360deg);
+        }
+      }
+
     }
 
     .nickname {
@@ -67,4 +82,23 @@
     }
 
   }
+}
+
+@keyframes play {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    -o-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotateZ(-360deg);
+    -moz-transform: rotateZ(-360deg);
+    -ms-transform: rotateZ(-360deg);
+    -o-transform: rotateZ(-360deg);
+    transform: rotateZ(-360deg);
+  }
+
 }
