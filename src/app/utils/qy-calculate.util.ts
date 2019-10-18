@@ -5,9 +5,9 @@ const toFixed = (num: number | string, n: number) => {
   if (num < 0) {
     num = -num
   } else {
-    return -(((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n))
+    return (((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n))
   }
-  return ((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n)
+  return -((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n)
 }
 
 const transformNum = (num: number | string) => {

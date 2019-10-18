@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, Ren
 import { qyBrowserUtils } from 'src/app/utils/qy-browser.util';
 import { fromEvent, interval, Subscription } from 'rxjs';
 import { debounceTime, throttle } from 'rxjs/operators';
-import { multiply, minus } from 'src/app/utils/qy-calculate.util';
+import { multiply, minus, toFixed } from 'src/app/utils/qy-calculate.util';
 
 @Component({
   selector: 'qy-sidebar',
@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     /* 有效距离 */
     let validHeight = qyBrowserUtils.getScrollHeight() - qyBrowserUtils.getClientHeight()
     /* 百分比 */
-    this.heightRate = Math.floor(multiply(qyBrowserUtils.getScrollTop(), validHeight) * 100)
+    this.heightRate = toFixed((multiply(qyBrowserUtils.getScrollTop() * 100, validHeight)), 0)
   }
 
   toTop(): void {
