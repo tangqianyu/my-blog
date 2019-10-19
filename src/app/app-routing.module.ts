@@ -3,6 +3,7 @@ import { Routes, RouterModule, Router, ActivatedRoute, NavigationEnd } from '@an
 import { BlogComponent } from './blog/blog.component';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -12,6 +13,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'blog/home',
     pathMatch: 'full'
+  },
+
+  {
+    path:'test',
+    component:TestComponent
   },
 
   {

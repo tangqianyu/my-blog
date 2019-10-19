@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { qyBrowserUtils } from 'src/app/utils/qy-browser.util';
-import { fromEvent, interval, Subscription } from 'rxjs';
-import { debounceTime, throttle } from 'rxjs/operators';
-import { multiply, minus, toFixed } from 'src/app/utils/qy-calculate.util';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, } from 'rxjs/operators';
+import { multiply, minus, divide, plus, toFixed } from 'src/app/utils/qy-calculate.util';
 
 @Component({
   selector: 'qy-sidebar',
@@ -30,7 +30,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     this.toTopheight = qyBrowserUtils.getElementToPageTop(this.sidebar.nativeElement)
     this.elementHeight = this.sidebar.nativeElement.offsetHeight
     this.subscribeScoll = fromEvent(window, 'scroll').pipe(
-      debounceTime(50)
+      debounceTime(10)
     ).subscribe(event => {
       this.calHeightRate()
       this.handerSiderbar()
@@ -40,9 +40,9 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   calHeightRate(): void {
     /* 有效距离 */
-    let validHeight = qyBrowserUtils.getScrollHeight() - qyBrowserUtils.getClientHeight()
+    let validHeight = minus(qyBrowserUtils.getScrollHeight(), qyBrowserUtils.getClientHeight())
     /* 百分比 */
-    this.heightRate = toFixed((multiply(qyBrowserUtils.getScrollTop() * 100, validHeight)), 0)
+    this.heightRate = toFixed(divide(multiply(qyBrowserUtils.getScrollTop(), 100), validHeight),0)
   }
 
   toTop(): void {
@@ -51,11 +51,12 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handerSiderbar(): void {
     let scrollTop = qyBrowserUtils.getScrollTop()
-    if (scrollTop >= minus(this.toTopheight, this.elementHeight - 20)) {
+    
+    if (scrollTop >= minus(this.toTopheight, this.elementHeight + 20)) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
       this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')
       this.render2.setStyle(this.sidebar.nativeElement, 'top', '0')
-    } else {
+    } else if (scrollTop <= plus(this.toTopheight, this.elementHeight)) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'static')
     }
 

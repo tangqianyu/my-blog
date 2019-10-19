@@ -1,13 +1,14 @@
-const toFixed = (num: number | string, n: number) => {
-  /* 自定义fixed方法 */
+const toFixed = (num: number | string, n: number | string) => {
+
   num = transformNum(num)
+  n = transformNum(n)
 
   if (num < 0) {
     num = -num
   } else {
-    return (((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n))
+    return (parseInt(((num * (Math.pow(10, n))) + 0.5) + '', 10) / Math.pow(10, n))
   }
-  return -((num * (Math.pow(10, n)) + 0.5), 10) / Math.pow(10, n)
+  return -parseInt(((num * (Math.pow(10, n))) + 0.5) + '', 10) / Math.pow(10, n)
 }
 
 const transformNum = (num: number | string) => {
