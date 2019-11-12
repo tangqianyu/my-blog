@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     /* 有效距离 */
     let validHeight = minus(qyBrowserUtils.getScrollHeight(), qyBrowserUtils.getClientHeight())
     /* 百分比 */
-    this.heightRate = toFixed(divide(multiply(qyBrowserUtils.getScrollTop(), 100), validHeight),0)
+    this.heightRate = toFixed(divide(qyBrowserUtils.getScrollTop() * 100, validHeight), 0)
   }
 
   toTop(): void {
@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handerSiderbar(): void {
     let scrollTop = qyBrowserUtils.getScrollTop()
-    
+
     if (scrollTop >= minus(this.toTopheight, this.elementHeight + 20)) {
       this.render2.setStyle(this.sidebar.nativeElement, 'position', 'fixed')
       this.render2.setStyle(this.sidebar.nativeElement, 'z-index', '100')

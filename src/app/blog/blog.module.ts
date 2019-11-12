@@ -12,6 +12,7 @@ import { BlogComponent } from './blog.component';
 import { SharedModule } from '../shared/shared.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ToolsComponent } from './tools/tools.component';
+import { LabelComponent } from './label/label.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,11 @@ const routes: Routes = [
       },
 
       {
+        path: 'label',
+        component: LabelComponent
+      },
+
+      {
         path: 'reward',
         component: RewardComponent
       }
@@ -71,6 +77,7 @@ const routes: Routes = [
     HomeComponent,
     AboutComponent,
     CategoryComponent,
+    LabelComponent,
     RewardComponent,
     BlogComponent,
 

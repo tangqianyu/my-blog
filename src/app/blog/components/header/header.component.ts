@@ -27,6 +27,12 @@ export class HeaderComponent implements OnInit {
     },
 
     {
+      icon: 'icon-label',
+      text: '标签',
+      link: '/blog/label'
+    },
+
+    {
       icon: 'icon-file',
       text: '归档',
       link: '/blog/post'
