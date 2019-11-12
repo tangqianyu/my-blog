@@ -10,6 +10,8 @@ import { CategoryComponent } from './category/category.component';
 import { RewardComponent } from './reward/reward.component';
 import { BlogComponent } from './blog.component';
 import { SharedModule } from '../shared/shared.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ToolsComponent } from './tools/tools.component';
 
 
 const routes: Routes = [
@@ -52,12 +54,6 @@ const routes: Routes = [
     ]
   },
 
-
-
-
-
-
-
 ]
 
 @NgModule({
@@ -70,6 +66,7 @@ const routes: Routes = [
     FooterComponent,
     SidebarComponent,
     PostListComponent,
+    PaginationComponent,
 
     HomeComponent,
     AboutComponent,

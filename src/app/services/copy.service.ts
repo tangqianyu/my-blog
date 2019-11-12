@@ -1,4 +1,4 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { Injectable, Renderer2 } from '@angular/core';
 import { qyBrowserUtils } from '../utils/qy-browser.util';
 
 
@@ -9,7 +9,7 @@ export class CopyService {
   private renderer: Renderer2
 
   constructor(
-  ) {}
+  ) { }
 
   copy(text: string) {
     const input: HTMLInputElement = this.renderer.createElement('input')
@@ -26,7 +26,6 @@ export class CopyService {
       console.log('复制成功!');
     }
     this.renderer.removeChild(document.body, input)
-
   }
 
 }

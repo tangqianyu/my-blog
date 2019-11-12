@@ -10,7 +10,8 @@
   <div class="site-nav">
     <ul class="menu">
       <li *ngFor="let item of icons" class="menu-item g-flex-h-center" [routerLink]="[ item.link ]"
-        routerLinkActive="active">
+        routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+          true}">
         <i class="iconfont {{item.icon}}"></i>
         <span>{{item.text}}</span>
       </li>

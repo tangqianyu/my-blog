@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { minus, toFixed, plus } from '../utils/qy-calculate.util';
 
 @Component({
-  selector: 'app-test',
+  selector: 'qy-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss']
 })
